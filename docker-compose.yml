@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres      # Имя пользователя по умолчанию (можно изменить)
+      POSTGRES_PASSWORD: password  # Пароль (обязательно укажите свой безопасный пароль)
+      POSTGRES_DB: mydatabase      # Имя базы данных по умолчанию (можно изменить)
+    ports:
+      - "5432:5432"                # Порт: локальный 5432 -> контейнер 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # Монтирование тома для сохранения данных
+volumes:
+  pgdata:                          # Определение тома для persistence
